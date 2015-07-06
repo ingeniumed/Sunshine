@@ -24,7 +24,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         String[] data = {
                 "Mon 6/23 - Sunny - 31/7",
                 "Tue 6/24 - Foggy - 21/8",
@@ -38,7 +37,8 @@ public class MainActivityFragment extends Fragment {
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item_forecast, R.id.list_item_forecast_textview, weekForecast);
 
-        ListView weatherDetails = (ListView)rootView.findViewById(R.id.list_item_forecast_textview);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        ListView weatherDetails = (ListView)rootView.findViewById(R.id.listview_forecast);
         weatherDetails.setAdapter(dataAdapter);
 
         return rootView;
