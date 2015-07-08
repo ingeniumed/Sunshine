@@ -12,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,6 +68,15 @@ public class MainActivityFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ListView weatherDetails = (ListView)rootView.findViewById(R.id.listview_forecast);
         weatherDetails.setAdapter(dataAdapter);
+        weatherDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast toast = Toast.makeText(getActivity(), dataAdapter.getItem(position), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+
         return rootView;
     }
 
