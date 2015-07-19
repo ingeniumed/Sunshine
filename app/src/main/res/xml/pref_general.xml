@@ -8,4 +8,11 @@
         android:capitalize="words"
         android:singleLine="true" />
 
+    <ListPreference
+        android:key="@string/pref_temperature_key"
+        android:title="@string/pref_temperature_label"
+        android:defaultValue="@string/pref_temperature_metric"
+        android:entryValues="@array/pref_temperature_values"
+        android:entries="@array/pref_temperature_options" />
+
 </PreferenceScreen>
