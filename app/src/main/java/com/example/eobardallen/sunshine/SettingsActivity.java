@@ -19,17 +19,12 @@ import android.preference.PreferenceManager;
  */
 public class SettingsActivity extends PreferenceActivity
     implements Preference.OnPreferenceChangeListener{
-    /**
-     * Determines whether to always show the simplified settings UI, where
-     * settings are presented in a single list. When false, settings are shown
-     * as a master/detail two-pane view on tablets. When true, a single pane is
-     * shown on tablets.
-     */
-    private static final boolean ALWAYS_SIMPLE_PREFS = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.pref_general);
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
     }
 
     /**
