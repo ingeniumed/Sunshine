@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sunshine.app.data;
+package com.example.eobardallen.sunshine.data;
 
 import android.annotation.TargetApi;
 import android.content.ContentProvider;
@@ -23,9 +23,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-
-import com.example.eobardallen.sunshine.data.WeatherContract;
-import com.example.eobardallen.sunshine.data.WeatherDbHelper;
 
 public class WeatherProvider extends ContentProvider {
 
