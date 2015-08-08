@@ -91,11 +91,11 @@ public class MainActivityFragment extends Fragment {
         {
 
             if (unitType.equals(getString(R.string.pref_temperature_imperial))) {
-                Log.d(LOG_TAG, "Unit type is imperial");
+                //Log.d(LOG_TAG, "Unit type is imperial");
                 high = (high*1.8) + 32;
                 low = (low*1.8) + 32;
             } else if (unitType.equals(getString(R.string.pref_temperature_metric))) {
-                Log.d(LOG_TAG, "Unit type is metric");
+               // Log.d(LOG_TAG, "Unit type is metric");
             } else {
                 Log.d(LOG_TAG, "unity type unknown");
             }
