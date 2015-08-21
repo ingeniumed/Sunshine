@@ -39,9 +39,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.eobardallen.sunshine.MainActivity" />
         </activity>
+        <provider
+            android:authorities="com.example.eobardallen.sunshine"
+            android:name=".data.WeatherProvider" />
     </application>
-
-    <provider
-        android:authorities="com.example.eobardallen.sunshine"
-        android:name=".data.WeatherProvider" />
 </manifest>

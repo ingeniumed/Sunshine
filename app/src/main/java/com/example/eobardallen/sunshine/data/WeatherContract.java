@@ -28,7 +28,7 @@ public class WeatherContract {
 
 
     //name for the entire content provider
-    public static final String CONTENT_AUTHORITY = "com.example.android.sunshine.app";
+    public static final String CONTENT_AUTHORITY = "com.example.eobardallen.sunshine";
 
     // base of all URI's which apps will use to contact the content provider using content
     // authority

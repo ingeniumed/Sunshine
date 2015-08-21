@@ -30,10 +30,10 @@ public class WeatherProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private WeatherDbHelper mOpenHelper;
 
-    static final int WEATHER = 100;
-    static final int WEATHER_WITH_LOCATION = 101;
-    static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
-    static final int LOCATION = 300;
+    public static final int WEATHER = 100;
+    public static final int WEATHER_WITH_LOCATION = 101;
+    public static final int WEATHER_WITH_LOCATION_AND_DATE = 102;
+    public static final int LOCATION = 300;
 
     private static final SQLiteQueryBuilder sWeatherByLocationSettingQueryBuilder;
 
@@ -48,7 +48,7 @@ public class WeatherProvider extends ContentProvider {
                         " ON " + WeatherContract.WeatherEntry.TABLE_NAME +
                         "." + WeatherContract.WeatherEntry.COLUMN_LOC_KEY +
                         " = " + WeatherContract.LocationEntry.TABLE_NAME +
-                        "." + WeatherContract.LocationEntry._ID);
+                        " . " + WeatherContract.LocationEntry._ID);
     }
 
     //location.location_setting = ?
@@ -114,15 +114,16 @@ public class WeatherProvider extends ContentProvider {
         and LOCATION integer constants defined above.  You can test this by uncommenting the
         testUriMatcher test within TestUriMatcher.
      */
-    static UriMatcher buildUriMatcher() {
+    public static UriMatcher buildUriMatcher() {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        final String authority = WeatherContract.CONTENT_AUTHORITY;
 
-        matcher.addURI(authority,WeatherContract.PATH_WEATHER, WEATHER);
-        matcher.addURI(authority,WeatherContract.PATH_WEATHER + "/*", WEATHER_WITH_LOCATION);
-        matcher.addURI(authority,WeatherContract.PATH_WEATHER + "/*/#", WEATHER_WITH_LOCATION_AND_DATE);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER, WEATHER);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER + "/*",
+                WEATHER_WITH_LOCATION);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY,WeatherContract.PATH_WEATHER + "/*/#",
+                WEATHER_WITH_LOCATION_AND_DATE);
 
-        matcher.addURI(authority, WeatherContract.PATH_LOCATION, LOCATION);
+        matcher.addURI(WeatherContract.CONTENT_AUTHORITY, WeatherContract.PATH_LOCATION, LOCATION);
         return matcher;
     }
 
@@ -150,7 +151,6 @@ public class WeatherProvider extends ContentProvider {
             // one row only so item type
             case WEATHER_WITH_LOCATION_AND_DATE:
                 return WeatherContract.WeatherEntry.CONTENT_ITEM_TYPE;
-            // these give multiple rows hence why its dir type
             case WEATHER_WITH_LOCATION:
                 return WeatherContract.WeatherEntry.CONTENT_TYPE;
             case WEATHER:
