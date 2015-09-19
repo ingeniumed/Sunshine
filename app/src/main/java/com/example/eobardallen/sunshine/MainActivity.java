@@ -12,14 +12,18 @@ import android.view.MenuItem;
 public class MainActivity extends ActionBarActivity {
 
     private final String LOG_TAG = MainActivity.class.getSimpleName();
+    private final String MAINACTIVITYFRAGMENT_TAG = "MATAG";
+
+    private String mLocation;
 
     protected void onCreate(Bundle savedInstanceState) {
+        mLocation = Utility.getPreferredLocation(this);
         super.onCreate(savedInstanceState);
         Log.d("LOG_TAG", "SO THIS IS AWKWARD");
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new MainActivityFragment())
+                    .add(R.id.main_container, new MainActivityFragment(), MAINACTIVITYFRAGMENT_TAG)
                     .commit();
         }
     }
@@ -64,6 +68,21 @@ public class MainActivity extends ActionBarActivity {
             startActivity(intent);
         } else {
             Log.d ("LOG_TAG", "Couldn't call" + location + ", no receiving apps installed!");
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        String location = Utility.getPreferredLocation(this);
+        //update location in the second pane using the fragment manager
+        if (location!=null && !location.equals(mLocation)){
+            MainActivityFragment ma = (MainActivityFragment)getSupportFragmentManager()
+                    .findFragmentByTag(MAINACTIVITYFRAGMENT_TAG);
+            if (null != ma){
+                ma.onLocationChanged();
+            }
+            mLocation = location;
         }
     }
 }
