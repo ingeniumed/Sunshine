@@ -1,1 +1,4 @@
-This is an android weather application made while doing the Udacity course on Android Development
+#Sunshine
+
+Android weather application that makes use of the OpenWeather API in order to retrieve and display the weather of an entered locale based on a zip code. 
+
